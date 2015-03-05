@@ -40,4 +40,12 @@ public class TemaEntity {
 	public void setQuestion (String question) {
 		this.question = question;
 	}
+
+	@Override
+	public String toString() {
+		return "TemaEntity [id=" + id + ", name=" + name + ", question="
+				+ question + "]";
+	}
+	
+	
 }
