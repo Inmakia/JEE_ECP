@@ -8,6 +8,11 @@ public abstract class DaoFactory {
 	}
 	
 	public static DaoFactory getFactory() {
+		assert DaoFactory.factory != null;
 		return DaoFactory.factory;
 	}
+	
+	public abstract TemaDao getTemaDao();
+	
+	public abstract VotoDao getVotoDao();
 }
