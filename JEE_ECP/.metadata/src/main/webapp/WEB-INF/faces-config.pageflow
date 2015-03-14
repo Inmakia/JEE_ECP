@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14259786025190" configfile="/JEE_ECP/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="jsf/navigator.xhtml" id="pf14259788502621" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" outlinks="pf14259788502622 pf14259788502623 pf14259788502624 pf14259788502625 pf14259788502626" inlinks="pf14259788502626" path="/jsf/navigator.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/rule1Page.xhtml" id="pf14259788502637" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14259788502622 pf14259788502624" path="/jsf/rule1Page.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/rule2Page.xhtml" id="pf14259788502638" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14259788502623" path="/jsf/rule2Page.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/staticPage.xhtml" id="pf14259788502639" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf14259788502625" path="/jsf/staticPage.xhtml"/>
+  <links id="pf14259788502622" target="pf14259788502637" source="pf14259788502621" outcome="rule1"/>
+  <links id="pf14259788502623" target="pf14259788502638" source="pf14259788502621" outcome="rule2"/>
+  <links id="pf14259788502624" target="pf14259788502637" source="pf14259788502621" outcome="rule2"/>
+  <links id="pf14259788502625" target="pf14259788502639" source="pf14259788502621" outcome="staticPage"/>
+  <links id="pf14259788502626" target="pf14259788502621" source="pf14259788502621"/>
+</pageflow:Pageflow>
