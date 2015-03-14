@@ -51,6 +51,7 @@ public class TemaDaoJpaTest {
 		}
 		for (int i = 1; i < data.size()-1; i++) {
 			temaDao.read(i);
+			
 		}
 	}
 
