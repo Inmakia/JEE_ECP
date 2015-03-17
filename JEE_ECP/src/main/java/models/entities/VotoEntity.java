@@ -24,6 +24,7 @@ public class VotoEntity {
 	public VotoEntity(String ipUser, Double vote, Studies studies, TemaEntity tema ) {
 		this.setIpUser(ipUser);
 		this.studies = studies;
+		this.vote = vote;
 		this.tema = tema;
 	}
 	
@@ -73,4 +74,17 @@ public class VotoEntity {
 				+ ", studies=" + studies + ", tema=" + tema + "]";
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		boolean res = false;
+		if (obj instanceof VotoEntity) {
+			VotoEntity voto = (VotoEntity)obj;
+			res = true;
+			res = res && this.ipUser.equals(voto.ipUser);
+			res = res && this.vote.equals(voto.vote);
+			res = res && this.studies.equals(voto.studies);
+			res = res && this.tema.equals(voto.tema);
+		}
+		return res;
+	}
 }
