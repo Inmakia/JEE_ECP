@@ -8,6 +8,7 @@ import java.util.List;
 import models.daos.TemaDao;
 import models.entities.TemaEntity;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class TemaDaoJpaTest {
 	}
 	
 	@BeforeClass
-	public static void prepare() {
+	public static void beforeClass() {
 		DaoJpaFactory.setFactory(new DaoJpaFactory());
 		DaoJpaFactory.dropAndCreateTables();
 	}
@@ -41,7 +42,7 @@ public class TemaDaoJpaTest {
 		for (TemaEntity tema : data) {
 			assertTrue(temas.contains(tema));
 		}
-		assertTrue(temas.size() == data.size());		
+
 	}
 
 	@Test
@@ -49,25 +50,49 @@ public class TemaDaoJpaTest {
 		for (TemaEntity tema: data) {
 			temaDao.create(tema);
 		}
-		for (int i = 1; i < data.size()-1; i++) {
-			temaDao.read(i);
-			
+		List<TemaEntity> temas = temaDao.findAll();
+		for (int i = 0; i < temas.size(); i++) {
+			TemaEntity tema = temaDao.read(temas.get(i).getId());
+			TemaEntity comp = data.get(i);
+			assertTrue(tema.equals(comp));
 		}
 	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		for (TemaEntity tema: data) {
+			temaDao.create(tema);
+		}
+		String nombre = "ACT: Tema 1";
+		String pregunta = "ACT: Pregunta 1";
+		List<TemaEntity> temas = temaDao.findAll();
+		temas.get(0).setName(nombre);
+		temas.get(0).setQuestion(pregunta);
+		TemaEntity updated = new TemaEntity(nombre, pregunta);
+		temaDao.update(temas.get(0));
+		temas = temaDao.findAll();
+		assertEquals(updated, temas.get(0));
 	}
 
 	@Test
 	public void testDeleteById() {
-		fail("Not yet implemented");
+		for (TemaEntity tema: data) {
+			temaDao.create(tema);
+		}
+		List<TemaEntity> temas = temaDao.findAll();
+		for (int i = 0; i < temas.size(); i++) {
+			temaDao.deleteById(temas.get(i).getId());
+			TemaEntity deleted = temaDao.read(temas.get(i).getId());
+			assertNull(deleted);
+		}
 	}
 
-	@Test
-	public void testFindAll() {
-		fail("Not yet implemented");
+	@After
+	public void after() {
+		List<TemaEntity> temas = temaDao.findAll();
+		for (int i = 0; i < temas.size(); i++) {
+			temaDao.deleteById(temas.get(i).getId());
+		}
 	}
 
 }

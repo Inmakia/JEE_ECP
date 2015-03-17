@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 
 public class DaoJpaFactory extends DaoFactory {
-	private static final String PERSISTENCE_UNIT = "jee_ecp";
+	private static final String PERSISTENCE_UNIT = "JEE_ECP";
 	
 	private static EntityManagerFactory entityManagerFactory;
 	
@@ -35,6 +35,14 @@ public class DaoJpaFactory extends DaoFactory {
                 PersistenceUnitProperties.DROP_AND_CREATE);
         entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
         LogManager.getLogger(DaoJpaFactory.class).debug("create Entity Manager Factory");
+    }
+	
+	public static void dropTables() {
+        Map<String, String> properties = new HashMap<>();
+        properties.put(PersistenceUnitProperties.DDL_GENERATION,
+                PersistenceUnitProperties.DROP_ONLY);
+        entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
+        LogManager.getLogger(DaoJpaFactory.class).debug("drop Entity Manager Factory");
     }
 	
 	@Override

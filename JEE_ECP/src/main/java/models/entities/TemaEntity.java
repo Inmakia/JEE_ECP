@@ -46,6 +46,16 @@ public class TemaEntity {
 		return "TemaEntity [id=" + id + ", name=" + name + ", question="
 				+ question + "]";
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean res = false;
+		if (obj instanceof TemaEntity) {
+			TemaEntity tema = (TemaEntity)obj;
+			res = true;
+			res = res && this.name.equals(tema.name);
+			res = res && this.question.equals(tema.question);
+		}
+		return res;
+	}	
 }
