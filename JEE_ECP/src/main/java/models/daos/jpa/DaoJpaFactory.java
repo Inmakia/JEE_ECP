@@ -37,14 +37,6 @@ public class DaoJpaFactory extends DaoFactory {
         LogManager.getLogger(DaoJpaFactory.class).debug("create Entity Manager Factory");
     }
 	
-	public static void dropTables() {
-        Map<String, String> properties = new HashMap<>();
-        properties.put(PersistenceUnitProperties.DDL_GENERATION,
-                PersistenceUnitProperties.DROP_ONLY);
-        entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
-        LogManager.getLogger(DaoJpaFactory.class).debug("drop Entity Manager Factory");
-    }
-	
 	@Override
 	public TemaDao getTemaDao() {
 		return new TemaDaoJpa();
