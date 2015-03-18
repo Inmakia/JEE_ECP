@@ -9,7 +9,11 @@
 <body>
 	<h1>Práctica votaciones</h1>
 	<p>
-		<a href="/JEE_ECP/jsp/home">Vista de Persona</a>
+		Temas
+	</p>
+	
+	<p>
+		<a href="/JEE_ECP/jsp/addTema">Añadir tema</a>
 	</p>
 </body>
 </html>
