@@ -1,6 +1,5 @@
 package controllers.ejbs;
 
-import models.daos.TemaDao;
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
 import controllers.AddTemaController;

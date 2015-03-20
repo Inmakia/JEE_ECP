@@ -22,5 +22,8 @@
 			<input type="submit" value="Añadir tema" />
 		</p>
 	</form>
+	<p>
+	<a href="/JEE_ECP/jsp/home"> Volver al inicio</a>
+	</p>
 </body>
 </html>
