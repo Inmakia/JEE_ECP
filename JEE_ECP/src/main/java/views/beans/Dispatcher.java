@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.daos.DaoFactory;
+import models.daos.jpa.DaoJpaFactory;
+import models.entities.TemaEntity;
+
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -17,22 +21,21 @@ public class Dispatcher extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+    	DaoFactory.setFactory(new DaoJpaFactory());
         String action = request.getPathInfo().substring(1);
 
         String view;
         switch (action) {
-//        case "persona":
-//            PersonaView personaView = new PersonaView();
-//            personaView.setPersona(new Persona());
-//            request.setAttribute(action, personaView);
-//            view = action;
-//            break;
-//        case "rol":
-//            RolView rolView = new RolView();
-//            request.setAttribute(action, rolView);
-//            view = action;
-//            break;
+        case "addTema":
+            AddTemaViewBean addTemaViewBean = new AddTemaViewBean();
+            request.setAttribute(action, addTemaViewBean);
+            view = action;
+            break;
+        case "temas":
+            TemasViewBean temasViewBean = new TemasViewBean();
+            request.setAttribute(action, temasViewBean);
+            view = action;
+            break;
         default:
             view = "home";
         }
@@ -45,26 +48,24 @@ public class Dispatcher extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	DaoFactory.setFactory(new DaoJpaFactory());
         String action = request.getPathInfo().substring(1);
         String view = "home";
-//        switch (action) {
-//        case "persona":
-//            Persona persona = new Persona();
-//            persona.setId(Integer.valueOf(request.getParameter("id")));
-//            persona.setNombre(request.getParameter("nombre"));
-//            persona.setRol(request.getParameter("rol"));
-//            PersonaView personaView = new PersonaView();
-//            personaView.setPersona(persona);
-//            request.setAttribute(action, personaView);
-//            view = personaView.process();
-//            break;
-//        case "rol":
-//            RolView rolView = new RolView();
-//            rolView.setRol(request.getParameter("rol"));
-//            request.setAttribute(action, rolView);
-//            view = rolView.process();
-//            break;
-//        }
+        switch (action) {
+        case "addTema":
+        	AddTemaViewBean addTemaViewBean = new AddTemaViewBean();
+        	String nombre = request.getParameter("nombre");
+        	String pregunta = request.getParameter("pregunta");
+            addTemaViewBean.setNombre(nombre);
+            addTemaViewBean.setPregunta(pregunta);
+            request.setAttribute(action, addTemaViewBean);
+            view = addTemaViewBean.process();
+            break;
+        case "temas":
+            TemasViewBean temasViewBean = new TemasViewBean();
+            request.setAttribute(action, temasViewBean);
+            break;
+        }
 
         this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
                 .forward(request, response);

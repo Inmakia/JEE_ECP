@@ -9,7 +9,7 @@
 <body>
 	<h1>Práctica votaciones</h1>
 	<p>
-		Temas
+		<a href="/JEE_ECP/jsp/temas">Lista de Temas</a>
 	</p>
 	
 	<p>
