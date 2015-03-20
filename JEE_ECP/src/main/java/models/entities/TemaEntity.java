@@ -18,7 +18,7 @@ public class TemaEntity {
 	}
 	
 	public TemaEntity() {
-		this(null, null);
+
 	}
 	
 	public Integer getId() {

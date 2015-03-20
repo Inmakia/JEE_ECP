@@ -16,6 +16,19 @@ public class ControllerEjbFactory extends ControllerFactory {
 	private ViewVotesController viewVotesController;
 	private VotarController votarController;
 	
+	public static ControllerEjbFactory factory;
+	
+	public static void setFactory(ControllerEjbFactory factory) {
+		ControllerEjbFactory.factory = factory;
+	}
+	
+	public static ControllerEjbFactory getFactory() {
+		if (ControllerEjbFactory.factory == null) {
+			return new ControllerEjbFactory();
+		}
+		return ControllerEjbFactory.factory;
+	}
+	
 	public ControllerEjbFactory(){
 	}
 	
