@@ -32,6 +32,6 @@ public class AddTemaViewBean {
 	public String process() {
 		AddTemaController controller = ControllerEjbFactory.getFactory().getAddTemaController();
 		controller.run(nombre, pregunta);
-		return "temas";		
+		return "home";		
 	}
 }
