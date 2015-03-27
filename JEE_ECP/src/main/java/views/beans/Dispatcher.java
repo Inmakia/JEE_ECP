@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.daos.DaoFactory;
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
+import models.utils.Studies;
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
@@ -36,6 +37,13 @@ public class Dispatcher extends HttpServlet {
         	deleteTemaViewBean.setId(Integer.parseInt(request.getParameter("id")));
         	deleteTemaViewBean.update();
         	request.setAttribute(action, deleteTemaViewBean);
+        	view = action;
+        	break;
+        case "votarTema":
+        	VotarTemaViewBean votarTemaViewBean = new VotarTemaViewBean();
+        	votarTemaViewBean.setId(Integer.parseInt(request.getParameter("id")));
+        	votarTemaViewBean.update();
+        	request.setAttribute(action, votarTemaViewBean);
         	view = action;
         	break;
         case "temas":
@@ -74,6 +82,16 @@ public class Dispatcher extends HttpServlet {
         	deleteTemaViewBean.setPerm(request.getParameter("perm"));
         	request.setAttribute(action, deleteTemaViewBean);
         	view = deleteTemaViewBean.process();
+        	break;
+        case "votarTema":
+        	VotarTemaViewBean votarTemaViewBean = new VotarTemaViewBean();
+        	votarTemaViewBean.setId(Integer.parseInt(request.getParameter("id")));
+        	votarTemaViewBean.setStudies(Studies.valueOf(request.getParameter("studies")));
+        	votarTemaViewBean.setVote(Double.valueOf(request.getParameter("vote")));
+        	votarTemaViewBean.setIpUser(request.getRemoteAddr());
+        	votarTemaViewBean.update();
+        	request.setAttribute(action, votarTemaViewBean);
+        	view = votarTemaViewBean.process();
         	break;
         case "temas":
             TemasViewBean temasViewBean = new TemasViewBean();

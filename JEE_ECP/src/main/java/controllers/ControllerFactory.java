@@ -1,7 +1,7 @@
 package controllers;
 
 public abstract class ControllerFactory {
-	public abstract VotarController getVotarController();
+	public abstract VotarTemaController getVotarController();
 	public abstract ViewVotesController getViewVotesController();
 	public abstract AddTemaController getAddTemaController();
 	public abstract DeleteTemaController getDeleteController();

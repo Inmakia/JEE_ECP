@@ -6,7 +6,7 @@ import controllers.AddTemaController;
 import controllers.ControllerFactory;
 import controllers.DeleteTemaController;
 import controllers.ViewVotesController;
-import controllers.VotarController;
+import controllers.VotarTemaController;
 
 @ManagedBean(name = "controllerFactory")
 public class ControllerEjbFactory extends ControllerFactory {
@@ -14,7 +14,7 @@ public class ControllerEjbFactory extends ControllerFactory {
 	private AddTemaController addTemaController;
 	private DeleteTemaController deleteTemaController;
 	private ViewVotesController viewVotesController;
-	private VotarController votarController;
+	private VotarTemaController votarController;
 	
 	public static ControllerEjbFactory factory;
 	
@@ -33,9 +33,9 @@ public class ControllerEjbFactory extends ControllerFactory {
 	}
 	
 	@Override
-	public VotarController getVotarController() {
+	public VotarTemaController getVotarController() {
 		if (votarController == null) {
-			votarController = new VotarControllerEjb();
+			votarController = new VotarTemaControllerEjb();
 		}
 		return votarController;
 	}
