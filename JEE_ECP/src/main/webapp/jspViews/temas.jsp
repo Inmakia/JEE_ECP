@@ -16,7 +16,11 @@
 	<tr>
 		<td>${tema.name}</td>
 		<td>${tema.question}</td>
-		
+		<td><form action="/JEE_ECP/jsp/deleteTema" method="get">
+				<p><input type="submit" value="Eliminar tema" />
+				<input type="hidden" name="id" value="${tema.id}" /></p>
+			</form></td>
+			
 	</tr>
 </c:forEach>
 </table>

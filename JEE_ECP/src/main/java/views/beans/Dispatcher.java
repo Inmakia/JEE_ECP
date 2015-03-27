@@ -31,6 +31,13 @@ public class Dispatcher extends HttpServlet {
             request.setAttribute(action, addTemaViewBean);
             view = action;
             break;
+        case "deleteTema":
+        	DeleteTemaViewBean deleteTemaViewBean = new DeleteTemaViewBean();
+        	deleteTemaViewBean.setId(Integer.parseInt(request.getParameter("id")));
+        	deleteTemaViewBean.update();
+        	request.setAttribute(action, deleteTemaViewBean);
+        	view = action;
+        	break;
         case "temas":
             TemasViewBean temasViewBean = new TemasViewBean();
             request.setAttribute(action, temasViewBean);
@@ -61,6 +68,13 @@ public class Dispatcher extends HttpServlet {
             request.setAttribute(action, addTemaViewBean);
             view = addTemaViewBean.process();
             break;
+        case "deleteTema":
+        	DeleteTemaViewBean deleteTemaViewBean = new DeleteTemaViewBean();
+        	deleteTemaViewBean.setId(Integer.parseInt(request.getParameter("id")));
+        	deleteTemaViewBean.setPerm(request.getParameter("perm"));
+        	request.setAttribute(action, deleteTemaViewBean);
+        	view = deleteTemaViewBean.process();
+        	break;
         case "temas":
             TemasViewBean temasViewBean = new TemasViewBean();
             request.setAttribute(action, temasViewBean);
