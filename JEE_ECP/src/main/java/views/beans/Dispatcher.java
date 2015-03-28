@@ -23,6 +23,7 @@ public class Dispatcher extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	DaoFactory.setFactory(new DaoJpaFactory());
+    	request.setCharacterEncoding("UTF-8");
         String action = request.getPathInfo().substring(1);
 
         String view;
@@ -71,6 +72,7 @@ public class Dispatcher extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	DaoFactory.setFactory(new DaoJpaFactory());
+    	request.setCharacterEncoding("UTF-8");
         String action = request.getPathInfo().substring(1);
         String view = "home";
         switch (action) {
