@@ -1,5 +1,6 @@
 package controllers.ejbs;
 
+import models.daos.DaoFactory;
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
 import models.entities.VotoEntity;
@@ -14,6 +15,7 @@ public class VotarTemaControllerEjb implements VotarTemaController {
 
 	@Override
 	public void run(String ipUser, Double vote, Studies studies, TemaEntity tema) {
+    	DaoFactory.setFactory(new DaoJpaFactory());
 		DaoJpaFactory.getFactory().getVotoDao().create(new VotoEntity(ipUser, vote, studies, tema));		
 	}
 }

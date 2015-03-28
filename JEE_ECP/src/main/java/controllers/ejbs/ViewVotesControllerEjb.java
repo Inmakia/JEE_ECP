@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.daos.DaoFactory;
 import models.daos.VotoDao;
+import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
 import models.entities.VotoEntity;
 import models.utils.Studies;
@@ -18,6 +19,7 @@ public class ViewVotesControllerEjb implements ViewVotesController {
 	@Override
 	public Integer getVotos(TemaEntity tema) {
 		int total = 0;
+    	DaoFactory.setFactory(new DaoJpaFactory());
 		VotoDao votoDao = DaoFactory.getFactory().getVotoDao();
 		List<VotoEntity> votos = votoDao.findAll();
 		for (VotoEntity voto : votos) {
@@ -33,6 +35,7 @@ public class ViewVotesControllerEjb implements ViewVotesController {
 		Double media = 0.0;
 		int total = this.getVotos(tema);
 		if (total != 0) {
+	    	DaoFactory.setFactory(new DaoJpaFactory());
 			VotoDao votoDao = DaoFactory.getFactory().getVotoDao();
 			List<VotoEntity> votos = votoDao.findAll();
 			for (VotoEntity voto : votos) {
@@ -49,6 +52,7 @@ public class ViewVotesControllerEjb implements ViewVotesController {
 	public Double getMediaPorEstudios(TemaEntity tema, Studies studies) {
 		Double media = 0.0;
 		int total = 0;
+    	DaoFactory.setFactory(new DaoJpaFactory());
 		VotoDao votoDao = DaoFactory.getFactory().getVotoDao();
 		List<VotoEntity> votos = votoDao.findAll();
 		for (VotoEntity voto : votos) {
