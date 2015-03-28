@@ -1,18 +1,28 @@
 package views.beans;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
 import models.utils.Studies;
 import controllers.VotarTemaController;
 import controllers.ejbs.ControllerEjbFactory;
 
+@ManagedBean
 public class VotarTemaViewBean {
 	
+	@ManagedProperty(value="#{id}")
 	private Integer id;
+	@ManagedProperty(value="#{ipUser}")
 	private String ipUser;
+	@ManagedProperty(value="#{vote}")
 	private Double vote;
+	@ManagedProperty(value="#{studies}")
 	private Studies studies;
+	@ManagedProperty(value="#{studiesOptions}")
 	private Studies[] studiesOptions;
+	@ManagedProperty(value="#{tema}")
 	private TemaEntity tema;
 	
 	public Integer getId() {

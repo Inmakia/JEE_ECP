@@ -1,6 +1,7 @@
 package controllers.ejbs;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import controllers.AddTemaController;
 import controllers.ControllerFactory;
@@ -9,6 +10,7 @@ import controllers.ViewVotesController;
 import controllers.VotarTemaController;
 
 @ManagedBean(name = "controllerFactory")
+@SessionScoped
 public class ControllerEjbFactory extends ControllerFactory {
 	
 	private AddTemaController addTemaController;

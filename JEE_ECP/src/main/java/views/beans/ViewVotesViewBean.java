@@ -1,10 +1,13 @@
 package views.beans;
 
+import javax.faces.bean.ManagedBean;
+
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
 import models.utils.Studies;
 import controllers.ejbs.ControllerEjbFactory;
 
+@ManagedBean
 public class ViewVotesViewBean {
 	
 	private Integer id;

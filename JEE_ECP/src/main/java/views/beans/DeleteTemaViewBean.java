@@ -1,14 +1,22 @@
 package views.beans;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
 import controllers.DeleteTemaController;
 import controllers.ejbs.ControllerEjbFactory;
 
+@ManagedBean
 public class DeleteTemaViewBean {
-
+	
+	@ManagedProperty(value="#{id}")
 	private Integer id;
+	@ManagedProperty(value="#{tema}")
 	private TemaEntity tema;
+	@ManagedProperty(value="#{perm}")
 	private String perm;
 	private static final String TRUE = "666";
 	
@@ -31,6 +39,7 @@ public class DeleteTemaViewBean {
 		this.perm = perm;
 	} 
 	
+	@PostConstruct
 	public void update() {
 		this.setTema(DaoJpaFactory.getFactory().getTemaDao().read(id));
 	}
