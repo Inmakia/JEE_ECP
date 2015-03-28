@@ -1,10 +1,9 @@
 package views.beans;
 
-import controllers.VotarTemaController;
-import controllers.ejbs.ControllerEjbFactory;
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
 import models.utils.Studies;
+import controllers.ejbs.ControllerEjbFactory;
 
 public class ViewVotesViewBean {
 	
