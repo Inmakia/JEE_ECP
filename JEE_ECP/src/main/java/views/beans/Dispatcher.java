@@ -46,6 +46,13 @@ public class Dispatcher extends HttpServlet {
         	request.setAttribute(action, votarTemaViewBean);
         	view = action;
         	break;
+        case "votos":
+        	ViewVotesViewBean viewVotesViewBean = new ViewVotesViewBean();
+        	viewVotesViewBean.setId(Integer.parseInt(request.getParameter("id")));
+        	viewVotesViewBean.update();
+        	request.setAttribute(action, viewVotesViewBean);
+        	view = action;
+        	break;
         case "temas":
             TemasViewBean temasViewBean = new TemasViewBean();
             request.setAttribute(action, temasViewBean);
@@ -92,6 +99,14 @@ public class Dispatcher extends HttpServlet {
         	votarTemaViewBean.update();
         	request.setAttribute(action, votarTemaViewBean);
         	view = votarTemaViewBean.process();
+        	break;
+        case "votos":
+        	ViewVotesViewBean viewVotesViewBean = new ViewVotesViewBean();
+        	viewVotesViewBean.setId(Integer.parseInt(request.getParameter("id")));
+        	viewVotesViewBean.setStudies(Studies.valueOf(request.getParameter("studies")));
+        	viewVotesViewBean.update();
+        	request.setAttribute(action, viewVotesViewBean);
+        	view = action;
         	break;
         case "temas":
             TemasViewBean temasViewBean = new TemasViewBean();
