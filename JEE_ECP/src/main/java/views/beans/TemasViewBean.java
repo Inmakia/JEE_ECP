@@ -49,4 +49,10 @@ public class TemasViewBean {
 		this.setId(params.get("id"));
 		return "deleteTema";
 	}
+	
+	public String votarTema() {
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		this.setId(params.get("id"));
+		return "votarTema";
+	}
 }

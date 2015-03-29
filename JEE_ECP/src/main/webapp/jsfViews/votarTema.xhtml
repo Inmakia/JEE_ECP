@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<title>Votar tema</title>
+</h:head>
+<h:body>
+	<h2>Votar tema</h2>
+	<p>
+		Va a votar el siguiente tema: 
+	</p>
+	<h:form id="votarTemaViewBean">
+	<p>
+		<h:outputText value="Nombre: #{votarTemaViewBean.tema.name}" /></p>
+	<p>
+		<h:outputText value="Pregunta: #{votarTemaViewBean.tema.question}" /></p>
+	<p>
+		<h:outputText value="Nivel de estudios: " /><h:selectOneMenu id="studies" value="#{votarTemaViewBean.studies}">
+			<f:selectItems value="#{votarTemaViewBean.studiesOptions}" var="studies" itemLabel="#{studies.name()}" itemValue="#{studies.name()}" /></h:selectOneMenu>
+	</p>
+	<p>
+		<h:outputText value="Voto (de 1 a 10): " /><h:inputText type="number" id="vote" min="1" max="10" value="#{votarTemaViewBean.vote}" /></p>		
+	<p>
+		<h:commandButton value="Votar tema" action="#{votarTemaViewBean.process}">
+			<f:param name="id" value="#{votarTemaViewBean.id}" />
+		</h:commandButton>
+	</p>
+	</h:form>
+	<p>
+		<h:link value="Volver al inicio" outcome="home" />
+	</p>
+</h:body>
+</html>
