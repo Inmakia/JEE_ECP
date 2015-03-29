@@ -16,7 +16,6 @@
 		<p>
 			Nombre: <input name="nombre" type="text" /></p>
 		<p>
-		<p>
 			Pregunta: <input name="pregunta" type="text" /></p>
 		<p>
 			<input type="submit" value="Añadir tema" />
