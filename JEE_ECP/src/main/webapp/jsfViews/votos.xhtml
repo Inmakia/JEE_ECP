@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<title>Votos</title>
+</h:head>
+<h:body>
+	<h:form id="viewVotesViewBean">
+	<h2>Información del tema #{viewVotesViewBean.tema.name}</h2>
+	<p>
+		<h:outputText value="Nombre: #{viewVotesViewBean.tema.name}" /></p>
+	<p>
+		<h:outputText value="Pregunta: #{viewVotesViewBean.tema.question}" /></p>
+	<p>
+		<h:outputText value="Votos totales: #{viewVotesViewBean.total}" /></p>
+	<p>
+		<h:outputText value="Media de votos: #{viewVotesViewBean.media}" /></p>
+	<p><h:outputText value="Media de votos del nivel de estudios #{viewVotesViewBean.studies}: #{viewVotesViewBean.mediaPorEstudios}" /></p>
+	<p>
+		<h:outputText value="Elija nivel de estudios para ver la media según el mismo: " /><h:selectOneMenu id="studies" value="#{viewVotesViewBean.studies}">
+			<f:selectItems value="#{viewVotesViewBean.studiesOptions}" var="studies" itemLabel="#{studies.name()}" itemValue="#{studies.name()}" /></h:selectOneMenu>
+	</p>
+	<p>
+		<h:commandButton value="Ver votos" action="#{viewVotesViewBean.process}">
+			<f:param name="id" value="#{viewVotesViewBean.id}" />
+		</h:commandButton>
+	</p>
+	</h:form>
+	<p>
+		<h:link value="Volver al inicio" outcome="home" />
+	</p>
+</h:body>
+</html>

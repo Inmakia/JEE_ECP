@@ -1,6 +1,11 @@
 package views.beans;
 
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
@@ -17,6 +22,9 @@ public class ViewVotesViewBean {
 	private Double mediaPorEstudios;
 	private Studies studies;
 	private Studies[] studiesOptions;
+	@ManagedProperty(value="#{temas}")
+	private TemasViewBean temasViewBean;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -60,6 +68,24 @@ public class ViewVotesViewBean {
 		this.studiesOptions = studiesOptions;
 	}
 	
+	public TemasViewBean getTemasViewBean() {
+		return temasViewBean;
+	}
+	public void setTemasViewBean(TemasViewBean temasViewBean) {
+		this.temasViewBean = temasViewBean;
+	}
+	
+	@PostConstruct
+	public void updateJsf() {
+		if (temasViewBean.getId() != null) {
+			this.setId(Integer.parseInt(temasViewBean.getId()));
+		} else if (this.id == null) {
+			Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+			this.setId(Integer.parseInt(params.get("id")));
+		}
+		update();
+	}
+	
 	public void update() {
 		this.setStudiesOptions(Studies.values());
 		this.setTema(DaoJpaFactory.getFactory().getTemaDao().read(id));
@@ -68,6 +94,10 @@ public class ViewVotesViewBean {
 		if (this.studies != null) {
 			this.setMediaPorEstudios(ControllerEjbFactory.getFactory().getViewVotesController().getMediaPorEstudios(tema, studies));
 		}
+	}
+	
+	public String process() {
+		return "votes";
 	}
 	
 }
