@@ -1,7 +1,11 @@
 package views.beans;
 
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
@@ -24,6 +28,8 @@ public class VotarTemaViewBean {
 	private Studies[] studiesOptions;
 	@ManagedProperty(value="#{tema}")
 	private TemaEntity tema;
+	@ManagedProperty(value="#{temas}")
+	private TemasViewBean temasViewBean;
 	
 	public Integer getId() {
 		return id;
@@ -71,6 +77,25 @@ public class VotarTemaViewBean {
 
 	public void setStudiesOptions(Studies[] studiesOptions) {
 		this.studiesOptions = studiesOptions;
+	}
+	
+	public TemasViewBean getTemasViewBean() {
+		return temasViewBean;
+	}
+
+	public void setTemasViewBean(TemasViewBean temasViewBean) {
+		this.temasViewBean = temasViewBean;
+	}
+
+	@PostConstruct
+	public void updateJsf() {
+		if (temasViewBean.getId() != null) {
+			this.setId(Integer.parseInt(temasViewBean.getId()));
+		} else if (this.id == null) {
+			Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+			this.setId(Integer.parseInt(params.get("id")));
+		}
+		update();
 	}
 	
 	public void update() {

@@ -9,30 +9,30 @@
 </h:head>
 <h:body>
 	<h2>Temas</h2>
-	<div>${tView.update()}</div>
 	<table border="2">
-	<ui:repeat var="tema" value="#{temas.temas}">
+	<ui:repeat var="tema" value="#{temas.temas}" varStatus="status">
 		<tr>
-			<td><h:link href="/JEE_ECP/jsp/votos?id=${tema.id}">Detalles</a></td>
-			<td>${tema.name}</td>
-			<td>${tema.question}</td>
-			<td><form action="/JEE_ECP/jsp/votarTema" method="get">
-					<p><input type="submit" value="Votar tema" />
-					<input type="hidden" name="id" value="${tema.id}" /></p>
-				</form></td>
-			<td><form action="/JEE_ECP/jsp/deleteTema" method="get">
-					<p><input type="submit" value="Eliminar tema" />
-					<input type="hidden" name="id" value="${tema.id}" /></p>
-				</form></td>
+			<td><h:link value="Detalles" outcome="votosid=${tema.id}" /></td>
+			<td>#{tema.name}</td>
+			<td>#{tema.question}</td>
+			 <td><h:form>
+					<h:commandButton action="#{temas.votarTema}" value="Votar tema">
+					<f:param name="id" value="#{tema.id}" /></h:commandButton>
+				</h:form></td>
+			<td><h:form>
+					<h:commandButton action="#{temas.deleteTema}" value="Eliminar tema">
+					<f:param name="id" value="#{tema.id}" /></h:commandButton>
+				</h:form></td>
 				
 		</tr>
-	</c:forEach>
+	</ui:repeat>
 	</table>
-	<form action="/JEE_ECP/jsp/addTema" method="get">
-		<p><input type="submit" value="Añadir Tema" /></p>
-	</form>
 	<p>
-		<a href="/JEE_ECP/jsp/home"> Volver al inicio</a>
-		</p>
+		<h:link value="Volver al inicio" outcome="home" />
+	</p>
+	<p><h:form>
+			<h:button value="Añadir tema" outcome="addTema" />
+		</h:form>
+	</p>
 </h:body>
 </html>
