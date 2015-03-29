@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import models.daos.jpa.DaoJpaFactory;
 import models.entities.TemaEntity;
@@ -94,6 +95,11 @@ public class VotarTemaViewBean {
 		} else if (this.id == null) {
 			Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 			this.setId(Integer.parseInt(params.get("id")));
+			HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+			this.setIpUser(request.getHeader("X-FORWARDED-FOR"));
+			if (this.getIpUser() == null) {
+			    this.setIpUser(request.getRemoteAddr());
+			}
 		}
 		update();
 	}
