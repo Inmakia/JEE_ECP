@@ -12,7 +12,9 @@
 	<table border="2">
 	<ui:repeat var="tema" value="#{temas.temas}" varStatus="status">
 		<tr>
-			<td><h:link value="Detalles" outcome="votosid=${tema.id}" /></td>
+			<td><h:form><h:commandLink value="Detalles" action="#{temas.verVotos}">
+						<f:param name="id" value="#{tema.id}" /></h:commandLink>
+				</h:form></td>
 			<td>#{tema.name}</td>
 			<td>#{tema.question}</td>
 			 <td><h:form>

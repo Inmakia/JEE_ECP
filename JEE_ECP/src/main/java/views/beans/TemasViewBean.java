@@ -1,12 +1,10 @@
 package views.beans;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -54,5 +52,11 @@ public class TemasViewBean {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		this.setId(params.get("id"));
 		return "votarTema";
+	}
+	
+	public String verVotos() {
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		this.setId(params.get("id"));
+		return "votos?id="+this.getId();
 	}
 }
