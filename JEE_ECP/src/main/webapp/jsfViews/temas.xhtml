@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<title>Temas</title>
+</h:head>
+<h:body>
+	<h2>Temas</h2>
+	<div>${tView.update()}</div>
+	<table border="2">
+	<ui:repeat var="tema" value="#{temas.temas}">
+		<tr>
+			<td><h:link href="/JEE_ECP/jsp/votos?id=${tema.id}">Detalles</a></td>
+			<td>${tema.name}</td>
+			<td>${tema.question}</td>
+			<td><form action="/JEE_ECP/jsp/votarTema" method="get">
+					<p><input type="submit" value="Votar tema" />
+					<input type="hidden" name="id" value="${tema.id}" /></p>
+				</form></td>
+			<td><form action="/JEE_ECP/jsp/deleteTema" method="get">
+					<p><input type="submit" value="Eliminar tema" />
+					<input type="hidden" name="id" value="${tema.id}" /></p>
+				</form></td>
+				
+		</tr>
+	</c:forEach>
+	</table>
+	<form action="/JEE_ECP/jsp/addTema" method="get">
+		<p><input type="submit" value="Añadir Tema" /></p>
+	</form>
+	<p>
+		<a href="/JEE_ECP/jsp/home"> Volver al inicio</a>
+		</p>
+</h:body>
+</html>
