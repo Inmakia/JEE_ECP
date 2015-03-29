@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.daos.DaoFactory;
-import models.daos.jpa.DaoJpaFactory;
-import models.entities.TemaEntity;
 import models.utils.Studies;
 
 @WebServlet("/jsp/*")
