@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<title>Tema nuevo</title>
+</h:head>
+<h:body>
+	<h2>
+		Datos de nuevo tema
+	</h2>
+	<h:form id="deleteTemaViewBean">
+		<p>
+			<h:outputText value="¿Desea borrar el tema #{deleteTemaViewBean.tema.name}?" /></p>
+		<p>
+			<h:outputText value="Identificador de autorización: " /> <h:inputText value="#{deleteTemaViewBean.perm}" id="perm" /></p>
+		<p>
+			<h:commandButton value="Eliminar tema" action="#{deleteTemaViewBean.process}">
+			<f:param name="id" value="#{deleteTemaViewBean.id}" /></h:commandButton>
+		</p>
+	</h:form>
+	<p>
+	<h:link value="Volver al inicio" outcome="home" />
+	</p>
+</h:body>
+</html>
